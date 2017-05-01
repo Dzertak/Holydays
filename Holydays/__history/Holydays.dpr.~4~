@@ -1,0 +1,21 @@
+program Holydays;
+
+uses
+  Vcl.Forms,
+  UnitStart in 'UnitStart.pas' {FormStart},
+  UnitMain in 'UnitMain.pas' {FormMain},
+  Vcl.Themes,
+  Vcl.Styles,
+  UnitDataModule in 'UnitDataModule.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Light');
+  Application.CreateForm(TFormStart, FormStart);
+  Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

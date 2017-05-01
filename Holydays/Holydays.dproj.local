@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.089,E:\Всякая всячина\Работа\Holydays\Unit1.pas=E:\Всякая всячина\Работа\Holydays\UnitAddServiceSuppliers.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.458,E:\Всякая всячина\Работа\Holydays\UnitStart.dfm=C:\Users\Dzertak Western\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.033,E:\Всякая всячина\Работа\Holydays\Unit1.pas=E:\Всякая всячина\Работа\Holydays\UnitAddServiceExecutors.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.644,=E:\Всякая всячина\Работа\Holydays\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.699,E:\Всякая всячина\Работа\Holydays\UnitDataModule.dfm=E:\Всякая всячина\Работа\Holydays\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.458,E:\Всякая всячина\Работа\Holydays\UnitStart.pas=C:\Users\Dzertak Western\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.618,=C:\Users\Dzertak Western\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.699,E:\Всякая всячина\Работа\Holydays\UnitDataModule.pas=E:\Всякая всячина\Работа\Holydays\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.134,E:\Всякая всячина\Работа\Holydays\Unit1.dfm=E:\Всякая всячина\Работа\Holydays\UnitAddServiceSuppliers.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.992,E:\Всякая всячина\Работа\Holydays\UnitMain.pas=E:\Всякая всячина\Работа\Holydays\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.726,E:\Всякая всячина\Работа\Holydays\Holydays.dproj=C:\Users\Dzertak Western\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.033,E:\Всякая всячина\Работа\Holydays\Unit1.dfm=E:\Всякая всячина\Работа\Holydays\UnitAddServiceExecutors.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.658,=E:\Всякая всячина\Работа\Holydays\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.011,=E:\Всякая всячина\Работа\Holydays\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.992,E:\Всякая всячина\Работа\Holydays\UnitMain.dfm=E:\Всякая всячина\Работа\Holydays\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.241,=E:\Всякая всячина\Работа\Holydays\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

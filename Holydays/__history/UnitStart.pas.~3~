@@ -1,0 +1,48 @@
+unit UnitStart;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.jpeg, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Imaging.pngimage;
+
+type
+  TFormStart = class(TForm)
+    Image1: TImage;
+    Image2: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Timer1: TTimer;
+    Label6: TLabel;
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormStart: TFormStart;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitMain;
+
+procedure TFormStart.Timer1Timer(Sender: TObject);
+var g:Pointer;
+begin
+Application.CreateForm(TFormMain,FormMain);
+g:=@Application.MainForm;
+Pointer(G^):=FormMain;
+FormMain.show;
+FormStart.Close;
+Timer1.Enabled:=false;
+end;
+
+end.

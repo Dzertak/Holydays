@@ -1,0 +1,91 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 379
+  Width = 657
+  object con1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Password="";Data Source=DateBas' +
+      'e.mdb;Persist Security Info=True'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 8
+    Top = 8
+  end
+  object dsExecutors: TDataSource
+    DataSet = qryExecutors
+    Left = 24
+    Top = 64
+  end
+  object qryExecutors: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1080)
+    Left = 112
+    Top = 64
+  end
+  object dsServiceExecutors: TDataSource
+    DataSet = qryServiceExecutors
+    Left = 40
+    Top = 120
+  end
+  object qryServiceExecutors: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1059#1089#1083#1091#1075#1080'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081)
+    Left = 144
+    Top = 120
+  end
+  object dsSuppliers: TDataSource
+    DataSet = qrySuppliers
+    Left = 32
+    Top = 184
+  end
+  object qrySuppliers: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1055#1086#1089#1090#1072#1074#1097#1080#1082#1080)
+    Left = 104
+    Top = 184
+  end
+  object dsServiceSuppliers: TDataSource
+    DataSet = qryServiceSuppliers
+    Left = 48
+    Top = 240
+  end
+  object qryServiceSuppliers: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1059#1089#1083#1091#1075#1080'_'#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074)
+    Left = 152
+    Top = 240
+  end
+  object dsCustomers: TDataSource
+    DataSet = qryCustomers
+    Left = 40
+    Top = 304
+  end
+  object qryCustomers: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1047#1072#1082#1072#1079#1095#1080#1082#1080)
+    Left = 112
+    Top = 304
+  end
+end

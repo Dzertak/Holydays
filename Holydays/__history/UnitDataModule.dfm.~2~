@@ -1,0 +1,46 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 379
+  Width = 657
+  object con1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Password="";Data Source=DateBas' +
+      'e.mdb;Persist Security Info=True'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 8
+    Top = 8
+  end
+  object dsExecutors: TDataSource
+    DataSet = qryExecutors
+    Left = 24
+    Top = 64
+  end
+  object qryExecutors: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1080)
+    Left = 96
+    Top = 64
+  end
+  object dsServiceExecutors: TDataSource
+    DataSet = qryServiceExecutors
+    Left = 40
+    Top = 120
+  end
+  object qryServiceExecutors: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1059#1089#1083#1091#1075#1080'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081)
+    Left = 144
+    Top = 120
+  end
+end

@@ -1,0 +1,27 @@
+unit UnitAddServiceSuppliers;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls;
+
+type
+  TFormAddServiceSuppliers = class(TForm)
+    edt1: TEdit;
+    edt2: TEdit;
+    btn1: TSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormAddServiceSuppliers: TFormAddServiceSuppliers;
+
+implementation
+
+{$R *.dfm}
+
+end.
