@@ -1,0 +1,273 @@
+unit UnitCreateHolyday;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Mask;
+
+type
+  TFormCreateHolyday = class(TForm)
+    scrlbx1: TScrollBox;
+    grp1: TGroupBox;
+    btnAddZ: TSpeedButton;
+    edtZFio: TEdit;
+    edtZOrg: TEdit;
+    edtZTel: TEdit;
+    edtZEmail: TEdit;
+    grp2: TGroupBox;
+    img2: TImage;
+    btn1: TSpeedButton;
+    dbgrd4: TDBGrid;
+    edt2: TEdit;
+    dbgrd5: TDBGrid;
+    dbgrd6: TDBGrid;
+    grp3: TGroupBox;
+    img1: TImage;
+    btnAddServiceExecutor: TSpeedButton;
+    dbgrd1: TDBGrid;
+    edt1: TEdit;
+    dbgrd2: TDBGrid;
+    dbgrd3: TDBGrid;
+    grp4: TGroupBox;
+    btnAddHolyday: TSpeedButton;
+    edtHcodeZ: TEdit;
+    edtHcodeTH: TEdit;
+    edtHname: TEdit;
+    edtHplace: TEdit;
+    dtpHdate: TDateTimePicker;
+    edtHcost: TEdit;
+    chkHcosted: TCheckBox;
+    dbedt_: TDBEdit;
+    dbedt_1: TDBEdit;
+    lbl1: TLabel;
+    lbl2: TLabel;
+    btn2: TSpeedButton;
+    btn3: TSpeedButton;
+    dbedt_2: TDBEdit;
+    dbedt_3: TDBEdit;
+    procedure btnAddZClick(Sender: TObject);
+    procedure dbedt_Change(Sender: TObject);
+    procedure dbedt_1Change(Sender: TObject);
+    procedure edt1Change(Sender: TObject);
+    procedure edt2Change(Sender: TObject);
+    procedure btnAddHolydayClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnAddServiceExecutorClick(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    id_holyday:string;
+    costSerExe,costSerSup:string;
+  end;
+
+var
+  FormCreateHolyday: TFormCreateHolyday;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitDataModule, UnitMain;
+
+procedure TFormCreateHolyday.btn1Click(Sender: TObject);
+begin
+DataModule1.cmd1.CommandText:='Insert Into Заказы_поставщиков(Код_праздника,Код_услуги) Values('+id_holyday+','+dbedt_1.Text+')';
+DataModule1.cmd1.Execute;
+DataModule1.qryAddOrdSup.SQL.Clear;
+DataModule1.qryAddOrdSup.SQL.Add('Select DISTINCT з.Код_заказа,по.Название,у.Название,у.Стоимость');
+DataModule1.qryAddOrdSup.SQL.Add('from Заказы_поставщиков з, Праздники п, Поставщики по, Услуги_поставщиков у');
+DataModule1.qryAddOrdSup.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qryAddOrdSup.SQL.Add('AND по.Код_поставщика=у.Код_поставщиков  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qryAddOrdSup.Open;
+
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select SUM(у.Стоимость) as suma ');
+DataModule1.qrySQL.SQL.Add('from Заказы_поставщиков з, Праздники п, Поставщики по, Услуги_поставщиков у') ;
+DataModule1.qrySQL.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qrySQL.SQL.Add('AND по.Код_поставщика=у.Код_поставщиков  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qrySQL.Open;
+costSerSup:=DataModule1.qrySQL.FieldByName('suma').AsString;
+lbl2.Caption:='Стоимость: '+costSerSup;
+end;
+
+procedure TFormCreateHolyday.btn2Click(Sender: TObject);
+begin
+if(Length(dbedt_2.Text)>0)then
+begin
+DataModule1.cmd1.CommandText:='Delete From Заказы_исполнителей Where Код_заказа='+dbedt_2.Text;
+DataModule1.cmd1.Execute;
+DataModule1.qryAddOrdExe.SQL.Clear;
+DataModule1.qryAddOrdExe.SQL.Add('Select DISTINCT з.Код_заказа, и.Имя_контактного_лица,у.Название,у.Стоимость');
+DataModule1.qryAddOrdExe.SQL.Add('from Заказы_исполнителей з, Праздники п, Исполнители и, Услуги_исполнителей у');
+DataModule1.qryAddOrdExe.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qryAddOrdExe.SQL.Add('AND и.Код_исполнителя=у.Код_исполнителя  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qryAddOrdExe.Open;
+
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select SUM(у.Стоимость) as suma ');
+DataModule1.qrySQL.SQL.Add('from Заказы_исполнителей з, Праздники п, Исполнители и, Услуги_исполнителей у') ;
+DataModule1.qrySQL.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qrySQL.SQL.Add('AND и.Код_исполнителя=у.Код_исполнителя  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qrySQL.Open;
+costSerExe:=DataModule1.qrySQL.FieldByName('suma').AsString;
+lbl1.Caption:='Стоимость: '+costSerExe;
+end;
+end;
+
+procedure TFormCreateHolyday.btn3Click(Sender: TObject);
+begin
+if(Length(dbedt_3.Text)>0)then
+begin
+DataModule1.cmd1.CommandText:='Delete From Заказы_исполнителей Where Код_заказа='+dbedt_3.Text;
+DataModule1.cmd1.Execute;
+DataModule1.qryAddOrdSup.SQL.Clear;
+DataModule1.qryAddOrdSup.SQL.Add('Select DISTINCT з.Код_заказа,по.Название,у.Название,у.Стоимость');
+DataModule1.qryAddOrdSup.SQL.Add('from Заказы_поставщиков з, Праздники п, Поставщики по, Услуги_поставщиков у');
+DataModule1.qryAddOrdSup.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qryAddOrdSup.SQL.Add('AND по.Код_поставщика=у.Код_поставщиков  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qryAddOrdSup.Open;
+
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select SUM(у.Стоимость) as suma ');
+DataModule1.qrySQL.SQL.Add('from Заказы_исполнителей з, Праздники п, Исполнители и, Услуги_исполнителей у') ;
+DataModule1.qrySQL.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qrySQL.SQL.Add('AND по.Код_поставщика=у.Код_поставщиков  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qrySQL.Open;
+costSerSup:=DataModule1.qrySQL.FieldByName('suma').AsString;
+lbl2.Caption:='Стоимость: '+costSerSup;
+end;
+end;
+
+procedure TFormCreateHolyday.btnAddHolydayClick(Sender: TObject);
+var check:string;
+begin
+if(Length(btnAddHolyday.Caption)=1) then
+begin
+DataModule1.cmd1.CommandText:='Insert Into праздники(Код_заказчика,Код_типа_праздника, Название,Место_проведения,Дата_провидения) Values('+edtHcodeZ.Text+','+edtHcodeTH.Text+','''+edtHname.Text+''','''+edtHplace.Text+''','+FormatFloat('#', dtpHdate.Date)+')';
+DataModule1.cmd1.Execute;
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select Max(код_праздника) as lastH From Праздники');
+DataModule1.qrySQL.Open;
+id_holyday:=DataModule1.qrySQL.FieldByName('lastH').AsString;
+FormCreateHolyday.Caption:='Создание праздника №'+id_holyday;
+btnAddHolyday.Caption:='ок';
+edtHcost.Enabled:=True;
+chkHcosted.Enabled:=True;
+grp2.Enabled:=True;
+grp3.Enabled:=True;
+ShowMessage('Праздник зарегестрирован! Подсчитайте стоимость услуг!');
+end
+else
+begin
+if chkHcosted.Checked then
+check:='true'
+else check:='false';
+DataModule1.cmd1.CommandText:='Update Праздники set Стоимость='+IntToStr(StrToInt(costSerExe)+StrToInt(costSerExe))+', Оплачен='+check+' Where код_праздника='+id_holyday+'';
+DataModule1.cmd1.Execute;
+FormCreateHolyday.Caption:='Создание праздника';
+id_holyday:='';
+btnAddHolyday.Caption:='+';
+edtHcost.Enabled:=False;
+chkHcosted.Enabled:=False;
+grp2.Enabled:=False;
+grp3.Enabled:=False;
+costSerExe:='';
+costSerSup:='';
+ShowMessage('Праздник создан!');
+Close;
+end;
+end;
+
+procedure TFormCreateHolyday.btnAddServiceExecutorClick(Sender: TObject);
+begin
+DataModule1.cmd1.CommandText:='Insert Into Заказы_исполнителей(Код_праздника,Код_услуги) Values('+id_holyday+','+dbedt_.Text+')';
+DataModule1.cmd1.Execute;
+DataModule1.qryAddOrdExe.SQL.Clear;
+DataModule1.qryAddOrdExe.SQL.Add('Select з.Код_заказа, и.Имя_контактного_лица,у.Название,у.Стоимость');
+DataModule1.qryAddOrdExe.SQL.Add('from Заказы_исполнителей з, Праздники п, Исполнители и, Услуги_исполнителей у');
+DataModule1.qryAddOrdExe.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qryAddOrdExe.SQL.Add('AND и.Код_исполнителя=у.Код_исполнителя AND з.Код_праздника=п.Код_праздника');
+DataModule1.qryAddOrdExe.Open;
+
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select SUM(у.Стоимость) as suma ');
+DataModule1.qrySQL.SQL.Add('from Заказы_исполнителей з, Праздники п, Исполнители и, Услуги_исполнителей у') ;
+DataModule1.qrySQL.SQL.Add('Where п.Код_праздника='+id_holyday+' AND  з.Код_услуги=у.Код_услуги');
+DataModule1.qrySQL.SQL.Add('AND и.Код_исполнителя=у.Код_исполнителя  AND з.Код_праздника=п.Код_праздника');
+DataModule1.qrySQL.Open;
+costSerExe:=DataModule1.qrySQL.FieldByName('suma').AsString;
+lbl1.Caption:='Стоимость: '+costSerExe;
+end;
+
+procedure TFormCreateHolyday.btnAddZClick(Sender: TObject);
+begin
+DataModule1.cmd1.CommandText:='Insert Into Заказчики(ФИО,Организация,Телефон,Имейл,Дата_регистрации) Values('''+edtZFio.Text+''','''+edtZOrg.Text+''','''+edtZTel.Text+''','''+edtZEmail.Text+''','+FormatFloat('#', Date)+')';
+DataModule1.cmd1.Execute;
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select Max(код_заказчика) as last12 From Заказчики');
+DataModule1.qrySQL.Open;
+edtHcodeZ.Text:=DataModule1.qrySQL.FieldByName('last12').AsString;
+
+end;
+
+procedure TFormCreateHolyday.dbedt_1Change(Sender: TObject);
+begin
+if(Length(dbedt_1.Text)>0)then
+with DataModule1.qryAddSup do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Поставщики Where Код_поставщика='+dbedt_1.Text);
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.dbedt_Change(Sender: TObject);
+begin
+if(Length(dbedt_.Text)>0)then
+with DataModule1.qryAddExe do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Исполнители Where Код_исполнителя='+dbedt_.Text);
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.edt1Change(Sender: TObject);
+begin
+with DataModule1.qryAddSerExe do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_исполнителей уи');
+  SQL.Add('Where уи.Название LIKE ''%'+edt1.Text+'%'' OR ');
+  SQL.Add('уи.Стоимость LIKE ''%'+edt1.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.edt2Change(Sender: TObject);
+begin
+with DataModule1.qryAddSerSup do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_поставщиков уп');
+  SQL.Add('Where уп.Название LIKE ''%'+edt2.Text+'%'' OR ');
+  SQL.Add('уп.Стоимость LIKE ''%'+edt2.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.FormCreate(Sender: TObject);
+begin
+EnableScrollBar(dbgrd1.Handle,SB_HORZ,ESB_DISABLE_BOTH);
+ShowScrollBar(dbgrd1.Handle,SB_HORZ,False);
+costSerExe:='';
+costSerSup:='';
+end;
+
+end.

@@ -1495,6 +1495,333 @@ object FormMain: TFormMain
       end
     end
   end
+  object pnlSettings: TPanel
+    Left = 1
+    Top = 77
+    Width = 753
+    Height = 380
+    TabOrder = 5
+    Visible = False
+    object grp5: TGroupBox
+      Left = 0
+      Top = 2
+      Width = 753
+      Height = 378
+      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      TabOrder = 0
+      object img5: TImage
+        Left = 5
+        Top = 15
+        Width = 33
+        Height = 33
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+          00200806000000737A7AF4000003234944415478DAB5975B884D5118C7BF8341
+          8A1089261A4CB9C748C8E5C52577923C60F2E0324653DE865C9E90FBCB341897
+          91881246E4123332B935494A2EC92D120F1A2293FB38FEFFD6779A75B6B58FBD
+          F7D9F3D5AFD65E6BEDBDFE7BADFFFAF6DA09893F468095602778A4755DC17670
+          08DCB03B279A41C0433010DC0263B5EE285804BE808EE04F730A3800966A9933
+          F01D14E858D5607273CC009F930439E02C98EAD3EF369808BEC5296018A8D187
+          B7D50132C555F0168C01C57108D80B5638EAAF833DA0112C01531C7D4EC721A0
+          1B2803F3AD3A1A70BC5866439C03333D028BE234E15D305CCB74FC314F3B7D71
+          51CBCF413E0B710AB827C60F8C85E0B8A79DEEBFACE527A07F5C027A817230C3
+          AAAB0513247D09CE8039D63597A4240E01F6BEB7A35A85FD06CBC16C479FAA20
+          02123A65ADC14B7D333B987AAB409D982CF7BF6D48837E04A341611001793AB0
+          E8DBB403BF7CFA32115D00937CDA6F8AF1826F22E236E909765B75D3C179EB7A
+          28B8AFE51660ADBED535AD3B214D5B92A9983E18ACD75CF7B4A5B00570F0533A
+          D57C8B12EDCCF51D64F5BB2326F9701F1F06E3C0573126A48877A0BB18C7A792
+          0FD3F32C502FE6CBE81470504CC60A1A49CFFD9BC006155404D681D7DA960B76
+          814A70C54F407B9DDABC102252C11C30528C474285D703D374FAC3C610F020C2
+          7DFF08D82CC65476F083C2D30CA7B39F98695EE0E9439F546623A08D3E9C6ECF
+          B5DA778052C77D4740A1754D632E1693E3432D03053C05BD414B4FDB4FD045CC
+          31CA1B4CBFAF1CF5CC0FF4C3A83002923E6D2F40DF0CF77E061D1CF59F40A730
+          02F8A6398EB606D059DC598FF5F5E2FE98BD177346082CA095984F23B355B947
+          7D31A870DCB711ACB7AE9F89312F77027DD01846801DFBC132EB9AB3C38C4887
+          33A5324BAE025B24DD336BC0B6A0836612C02F5D8DA3DF07F0468C595DEB9EAF
+          6F9E9500FA809FD48208CFB924268965258053581AE5211A5C9AB26C04AC065B
+          B5FC58CCBACE55EC69A7CB79E0ACD5019913B89569D87DD9084889E8A133F143
+          EBE68193561F9E64EAB44C61DC39FC29A9900811E44434409AFE72933A684394
+          C1A20A609EE0818326E5D1AC4F5C8333FE02B488A04C74FA1717000000004945
+          4E44AE426082}
+      end
+      object lbl1: TLabel
+        Left = 240
+        Top = 21
+        Width = 300
+        Height = 25
+        Caption = #1057#1086#1079#1076#1072#1085#1080#1077' '#1088#1077#1079#1077#1088#1074#1085#1086#1081' '#1082#1086#1087#1080#1080
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbl7: TLabel
+        Left = 227
+        Top = 155
+        Width = 321
+        Height = 25
+        Caption = #1042#1086#1089#1090#1072#1085#1086#1074#1083#1077#1085#1080#1077' '#1073#1072#1079#1099' '#1076#1072#1085#1085#1099#1093
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object grp8: TGroupBox
+        Left = 5
+        Top = 52
+        Width = 745
+        Height = 101
+        TabOrder = 0
+        object lbl2: TLabel
+          Left = 3
+          Top = 57
+          Width = 153
+          Height = 16
+          Caption = #1042#1099#1073#1077#1088#1080#1090#1077' '#1073#1072#1079#1091' '#1076#1072#1085#1085#1099':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object btn9: TSpeedButton
+          Left = 159
+          Top = 54
+          Width = 23
+          Height = 22
+          Caption = '...'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          OnClick = btn9Click
+        end
+        object lbl3: TLabel
+          Left = 3
+          Top = 79
+          Width = 106
+          Height = 16
+          Caption = #1057#1086#1079#1076#1072#1090#1100' '#1082#1086#1087#1080#1102':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object btn10: TSpeedButton
+          Left = 111
+          Top = 75
+          Width = 23
+          Height = 22
+          Caption = '+'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          OnClick = btn10Click
+        end
+        object Label4: TLabel
+          Left = 202
+          Top = 13
+          Width = 42
+          Height = 16
+          Caption = 'Label4'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 276
+          Top = 35
+          Width = 42
+          Height = 16
+          Caption = 'Label6'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 186
+          Top = 57
+          Width = 4
+          Height = 16
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl4: TLabel
+          Left = 3
+          Top = 13
+          Width = 193
+          Height = 16
+          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1087#1088#1080#1083#1086#1078#1077#1085#1080#1103':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl5: TLabel
+          Left = 3
+          Top = 35
+          Width = 267
+          Height = 16
+          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1074#1072#1096#1077#1081' '#1088#1077#1079#1077#1088#1074#1085#1086#1081' '#1082#1086#1087#1080#1080':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+      object grp10: TGroupBox
+        Left = 3
+        Top = 186
+        Width = 745
+        Height = 101
+        TabOrder = 1
+        object lbl8: TLabel
+          Left = 3
+          Top = 57
+          Width = 196
+          Height = 16
+          Caption = #1042#1099#1073#1077#1088#1080#1090#1077' '#1088#1077#1079#1077#1088#1074#1085#1091#1102' '#1082#1086#1087#1080#1102':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object btn11: TSpeedButton
+          Left = 204
+          Top = 54
+          Width = 23
+          Height = 22
+          Caption = '...'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          OnClick = btn11Click
+        end
+        object lbl9: TLabel
+          Left = 3
+          Top = 79
+          Width = 178
+          Height = 16
+          Caption = #1042#1086#1089#1090#1072#1085#1086#1074#1080#1090#1100' '#1073#1072#1079#1091' '#1076#1072#1085#1085#1099#1093':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object btn12: TSpeedButton
+          Left = 186
+          Top = 75
+          Width = 23
+          Height = 22
+          Caption = #1086#1082
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          OnClick = btn12Click
+        end
+        object lbl10: TLabel
+          Left = 202
+          Top = 13
+          Width = 42
+          Height = 16
+          Caption = 'Label4'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl11: TLabel
+          Left = 276
+          Top = 35
+          Width = 42
+          Height = 16
+          Caption = 'Label6'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl12: TLabel
+          Left = 233
+          Top = 57
+          Width = 4
+          Height = 16
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl13: TLabel
+          Left = 3
+          Top = 13
+          Width = 193
+          Height = 16
+          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1087#1088#1080#1083#1086#1078#1077#1085#1080#1103':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lbl14: TLabel
+          Left = 3
+          Top = 35
+          Width = 267
+          Height = 16
+          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1074#1072#1096#1077#1081' '#1088#1077#1079#1077#1088#1074#1085#1086#1081' '#1082#1086#1087#1080#1080':'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+    end
+  end
   object pnlExecutors: TPanel
     Left = 1
     Top = 77
@@ -1843,9 +2170,9 @@ object FormMain: TFormMain
           Caption = '+'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -16
+          Font.Height = -19
           Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
+          Font.Style = []
           ParentFont = False
           ParentBiDiMode = False
           OnClick = btn7Click
@@ -1920,7 +2247,7 @@ object FormMain: TFormMain
             item
               Expanded = False
               FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
-              Width = 150
+              Width = 140
               Visible = True
             end
             item
@@ -2082,30 +2409,115 @@ object FormMain: TFormMain
           FE03543284FCAD58AC014EFCCD5FBC5EFEB935984C880000000049454E44AE42
           6082}
       end
-      object dbgrd8: TDBGrid
-        Left = 5
-        Top = 255
-        Width = 357
-        Height = 120
-        DataSource = DataModule1.dsOrderExecutors
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
-            Width = 220
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = #1057#1090#1086#1080#1084#1086#1089#1090#1100
-            Visible = True
-          end>
+      object btnAddHolydays: TSpeedButton
+        Left = 367
+        Top = 17
+        Width = 37
+        Height = 30
+        Hint = #1057#1086#1079#1076#1072#1090#1100' '#1085#1086#1074#1099#1081' '#1087#1088#1079#1076#1085#1080#1082'!'
+        Glyph.Data = {
+          F6060000424DF606000000000000360000002800000018000000180000000100
+          180000000000C0060000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5F5636363FFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FDFDFD272727B1B1B1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFBABABA313131FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDCDCDC1C1C1CFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6B6B6B7575
+          75FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          F5F5F5090909AFAFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFA5A5A5222222232323A6A6A6FFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F5D5D5D5D5D5D7F7F7FFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3D3D33C3C3C0707070707
+          073C3C3CD3D3D3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBDBDBD161616
+          989898F9F9F9F9F9F9989898161616BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDE
+          DEDE171717C1C1C1FFFFFFFFFFFFFFFFFFFFFFFFC1C1C1171717DEDEDEFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF4747478E8E8EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8D
+          8D8D474747FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFBFBFBF2A2A2AFCFCFCFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFCFCFC2A2A2ABFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5353539E9E9EFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E9E9E535353FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F4F4111111F3
+          F3F3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3F3F3111111
+          F4F4F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFBDBDBD404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFF404040BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF9A9A9A656565FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFBEBEBED3D3D36565659A9A9AFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9C9C9C626262FFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5C5C5CA0A0A06262629D9D9DFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC9C9C92C2C2CFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F4F4161616DEDEDE2C2C2C
+          C9C9C9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFEFEFE222222C4C4C4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFE6363635D
+          5D5DC4C4C4222222FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFA3A3A32E2E2EF5F5F5FFFFFFFFFFFFEDEDEDB1B1
+          B1484848393939E7E7E72E2E2EA3A3A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5F5F434343EDEDED
+          FFFFFFAEAEAE4A4A4A949494E7E7E74343435F5F5FFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC
+          FCFC7373731818187E7E7EB8B8B8B8B8B87E7E7E181818737373FCFCFCFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFD3D3D3747474464646464646747474D3D3D3FF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btnAddHolydaysClick
+      end
+      object btn13: TSpeedButton
+        Left = 130
+        Top = 17
+        Width = 33
+        Height = 30
+        Caption = '-'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btn13Click
+      end
+      object btnSortYear: TSpeedButton
+        Left = 608
+        Top = 19
+        Width = 33
+        Height = 30
+        Caption = 'Y'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        OnClick = btnSortYearClick
+      end
+      object btnPrint: TSpeedButton
+        Left = 575
+        Top = 19
+        Width = 33
+        Height = 30
+        Caption = 'P'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        OnClick = btnPrintClick
       end
       object dbgrd6: TDBGrid
         Left = 5
@@ -2113,7 +2525,7 @@ object FormMain: TFormMain
         Width = 745
         Height = 198
         DataSource = DataModule1.dsHolydays
-        TabOrder = 1
+        TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
@@ -2175,31 +2587,6 @@ object FormMain: TFormMain
             Visible = True
           end>
       end
-      object dbgrd7: TDBGrid
-        Left = 364
-        Top = 255
-        Width = 384
-        Height = 120
-        DataSource = DataModule1.dsOrderSuppliers
-        TabOrder = 2
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
-            Width = 200
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = #1057#1090#1086#1080#1084#1086#1089#1090#1100
-            Visible = True
-          end>
-      end
       object edt1: TEdit
         Left = 642
         Top = 32
@@ -2212,7 +2599,7 @@ object FormMain: TFormMain
         ParentBiDiMode = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 3
+        TabOrder = 1
         TextHint = #1053#1072#1081#1090#1080
         OnChange = edt1Change
       end
@@ -2223,197 +2610,101 @@ object FormMain: TFormMain
         Height = 21
         DataField = #1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072
         DataSource = DataModule1.dsHolydays
-        TabOrder = 4
+        TabOrder = 2
         Visible = False
         OnChange = dbedt_1Change
       end
-    end
-  end
-  object pnlSettings: TPanel
-    Left = 1
-    Top = 77
-    Width = 753
-    Height = 380
-    TabOrder = 5
-    Visible = False
-    object grp5: TGroupBox
-      Left = 0
-      Top = 2
-      Width = 753
-      Height = 378
-      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
-      TabOrder = 0
-      object img5: TImage
-        Left = 5
-        Top = 15
-        Width = 33
-        Height = 33
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
-          00200806000000737A7AF4000003234944415478DAB5975B884D5118C7BF8341
-          8A1089261A4CB9C748C8E5C52577923C60F2E0324653DE865C9E90FBCB341897
-          91881246E4123332B935494A2EC92D120F1A2293FB38FEFFD6779A75B6B58FBD
-          F7D9F3D5AFD65E6BEDBDFE7BADFFFAF6DA09893F468095602778A4755DC17670
-          08DCB03B279A41C0433010DC0263B5EE285804BE808EE04F730A3800966A9933
-          F01D14E858D5607273CC009F930439E02C98EAD3EF369808BEC5296018A8D187
-          B7D50132C555F0168C01C57108D80B5638EAAF833DA0112C01531C7D4EC721A0
-          1B2803F3AD3A1A70BC5866439C03333D028BE234E15D305CCB74FC314F3B7D71
-          51CBCF413E0B710AB827C60F8C85E0B8A79DEEBFACE527A07F5C027A817230C3
-          AAAB0513247D09CE8039D63597A4240E01F6BEB7A35A85FD06CBC16C479FAA20
-          02123A65ADC14B7D333B987AAB409D982CF7BF6D48837E04A341611001793AB0
-          E8DBB403BF7CFA32115D00937CDA6F8AF1826F22E236E909765B75D3C179EB7A
-          28B8AFE51660ADBED535AD3B214D5B92A9983E18ACD75CF7B4A5B00570F0533A
-          D57C8B12EDCCF51D64F5BB2326F9701F1F06E3C0573126A48877A0BB18C7A792
-          0FD3F32C502FE6CBE81470504CC60A1A49CFFD9BC006155404D681D7DA960B76
-          814A70C54F407B9DDABC102252C11C30528C474285D703D374FAC3C610F020C2
-          7DFF08D82CC65476F083C2D30CA7B39F98695EE0E9439F546623A08D3E9C6ECF
-          B5DA778052C77D4740A1754D632E1693E3432D03053C05BD414B4FDB4FD045CC
-          31CA1B4CBFAF1CF5CC0FF4C3A83002923E6D2F40DF0CF77E061D1CF59F40A730
-          02F8A6398EB606D059DC598FF5F5E2FE98BD177346082CA095984F23B355B947
-          7D31A870DCB711ACB7AE9F89312F77027DD01846801DFBC132EB9AB3C38C4887
-          33A5324BAE025B24DD336BC0B6A0836612C02F5D8DA3DF07F0468C595DEB9EAF
-          6F9E9500FA809FD48208CFB924268965258053581AE5211A5C9AB26C04AC065B
-          B5FC58CCBACE55EC69A7CB79E0ACD5019913B89569D87DD9084889E8A133F143
-          EBE68193561F9E64EAB44C61DC39FC29A9900811E44434409AFE72933A684394
-          C1A20A609EE0818326E5D1AC4F5C8333FE02B488A04C74FA1717000000004945
-          4E44AE426082}
+      object dbnvgr6: TDBNavigator
+        Left = 163
+        Top = 17
+        Width = 204
+        Height = 30
+        DataSource = DataModule1.dsHolydays
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbEdit, nbPost]
+        TabOrder = 3
       end
-      object lbl1: TLabel
-        Left = 240
-        Top = 21
-        Width = 300
-        Height = 25
-        Caption = #1057#1086#1079#1076#1072#1085#1080#1077' '#1088#1077#1079#1077#1088#1074#1085#1086#1081' '#1082#1086#1087#1080#1080
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -21
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
+      object cbb1: TComboBox
+        Left = 405
+        Top = 26
+        Width = 169
+        Height = 21
+        ItemIndex = 0
+        TabOrder = 4
+        Text = #1055#1086' '#1075#1086#1076#1091
+        Items.Strings = (
+          #1055#1086' '#1075#1086#1076#1091
+          #1055#1086' '#1090#1080#1087#1091' '#1087#1088#1072#1079#1076#1085#1080#1082#1072)
       end
-      object grp8: TGroupBox
-        Left = 5
-        Top = 52
-        Width = 745
-        Height = 101
-        TabOrder = 0
-        object lbl2: TLabel
-          Left = 3
-          Top = 57
-          Width = 153
-          Height = 16
-          Caption = #1042#1099#1073#1077#1088#1080#1090#1077' '#1073#1072#1079#1091' '#1076#1072#1085#1085#1099':'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
+      object grp11: TGroupBox
+        Left = 3
+        Top = 250
+        Width = 355
+        Height = 125
+        Caption = #1047#1072#1082#1072#1079#1099' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074
+        TabOrder = 5
+        object dbgrd8: TDBGrid
+          Left = 1
+          Top = 17
+          Width = 352
+          Height = 105
+          DataSource = DataModule1.dsOrderExecutors
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
+              Width = 220
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = #1057#1090#1086#1080#1084#1086#1089#1090#1100
+              Visible = True
+            end>
         end
-        object btn9: TSpeedButton
-          Left = 157
-          Top = 51
-          Width = 23
-          Height = 22
-          Caption = '...'
-          OnClick = btn9Click
-        end
-        object lbl3: TLabel
-          Left = 3
-          Top = 79
-          Width = 106
-          Height = 16
-          Caption = #1057#1086#1079#1076#1072#1090#1100' '#1082#1086#1087#1080#1102':'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object btn10: TSpeedButton
-          Left = 111
-          Top = 73
-          Width = 23
-          Height = 22
-          Caption = '+'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btn10Click
-        end
-        object Label4: TLabel
-          Left = 202
-          Top = 13
-          Width = 42
-          Height = 16
-          Caption = 'Label4'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label6: TLabel
-          Left = 276
-          Top = 35
-          Width = 42
-          Height = 16
-          Caption = 'Label6'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label1: TLabel
-          Left = 182
-          Top = 57
-          Width = 4
-          Height = 16
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object lbl4: TLabel
-          Left = 3
-          Top = 13
-          Width = 193
-          Height = 16
-          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1087#1088#1080#1083#1086#1078#1077#1085#1080#1103':'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object lbl5: TLabel
-          Left = 3
-          Top = 35
-          Width = 267
-          Height = 16
-          Caption = #1056#1072#1089#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1074#1072#1096#1077#1081' '#1088#1077#1079#1077#1088#1074#1085#1086#1081' '#1082#1086#1087#1080#1080':'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
+      end
+      object grp12: TGroupBox
+        Left = 360
+        Top = 250
+        Width = 390
+        Height = 125
+        Caption = #1047#1072#1082#1072#1079#1099' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081
+        TabOrder = 6
+        object dbgrd7: TDBGrid
+          Left = 2
+          Top = 17
+          Width = 385
+          Height = 105
+          DataSource = DataModule1.dsOrderSuppliers
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
+              Width = 220
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = #1057#1090#1086#1080#1084#1086#1089#1090#1100
+              Visible = True
+            end>
         end
       end
     end
   end
   object dlgOpen1: TOpenDialog
-    Left = 577
-    Top = 111
+    Left = 393
+    Top = 151
   end
 end

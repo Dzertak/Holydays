@@ -1,0 +1,449 @@
+unit UnitMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.Imaging.jpeg,
+  Vcl.ExtCtrls, Vcl.ImgList, Vcl.Imaging.pngimage, Vcl.ToolWin, Vcl.Buttons,
+  Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.Mask;
+
+type
+  TFormMain = class(TForm)
+    tlb1: TToolBar;
+    btn2: TSpeedButton;
+    btn1: TSpeedButton;
+    btn3: TSpeedButton;
+    btn4: TSpeedButton;
+    btn5: TSpeedButton;
+    btn6: TToolButton;
+    pnlExecutors: TPanel;
+    pnlSuppliers: TPanel;
+    pnlCustomers: TPanel;
+    pnlHolydays: TPanel;
+    img1: TImage;
+    grp1: TGroupBox;
+    grp2: TGroupBox;
+    img2: TImage;
+    grp3: TGroupBox;
+    img3: TImage;
+    grp4: TGroupBox;
+    img4: TImage;
+    pnlSettings: TPanel;
+    grp5: TGroupBox;
+    img5: TImage;
+    dbgrd1: TDBGrid;
+    dbnvgr1: TDBNavigator;
+    grp6: TGroupBox;
+    dbgrd2: TDBGrid;
+    edtSearchServiceExecutors: TEdit;
+    btnAddServiceExecutors: TSpeedButton;
+    dbnvgr2: TDBNavigator;
+    grp7: TGroupBox;
+    btn7: TSpeedButton;
+    edtSearchServiceSuppliers: TEdit;
+    dbnvgr3: TDBNavigator;
+    dbgrd4: TDBGrid;
+    dbnvgr4: TDBNavigator;
+    btn8: TToolButton;
+    dbnvgr5: TDBNavigator;
+    edtSearchCustomers: TEdit;
+    dbgrd5: TDBGrid;
+    dbgrd3: TDBGrid;
+    edtSearchSuppliers: TEdit;
+    edtSearchExecutors: TEdit;
+    dbgrd8: TDBGrid;
+    dbgrd6: TDBGrid;
+    dbgrd7: TDBGrid;
+    lbl1: TLabel;
+    grp8: TGroupBox;
+    lbl2: TLabel;
+    btn9: TSpeedButton;
+    lbl3: TLabel;
+    btn10: TSpeedButton;
+    dlgOpen1: TOpenDialog;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label1: TLabel;
+    lbl4: TLabel;
+    lbl5: TLabel;
+    pnlHello: TPanel;
+    grp9: TGroupBox;
+    img6: TImage;
+    lblHello: TLabel;
+    lbl6: TLabel;
+    img7: TImage;
+    img8: TImage;
+    img9: TImage;
+    img10: TImage;
+    img11: TImage;
+    dbedtExe: TDBEdit;
+    edt1: TEdit;
+    img12: TImage;
+    lbl7: TLabel;
+    grp10: TGroupBox;
+    lbl8: TLabel;
+    btn11: TSpeedButton;
+    lbl9: TLabel;
+    btn12: TSpeedButton;
+    lbl10: TLabel;
+    lbl11: TLabel;
+    lbl12: TLabel;
+    lbl13: TLabel;
+    lbl14: TLabel;
+    btnAddHolydays: TSpeedButton;
+    dbedt_: TDBEdit;
+    dbedt_1: TDBEdit;
+    dbnvgr6: TDBNavigator;
+    btn13: TSpeedButton;
+    procedure btn1Click(Sender: TObject);
+    procedure btn5Click(Sender: TObject);
+    procedure btn4Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure btn9Click(Sender: TObject);
+    procedure btn10Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure edtSearchSuppliersChange(Sender: TObject);
+    procedure edtSearchServiceSuppliersChange(Sender: TObject);
+    procedure edtSearchExecutorsChange(Sender: TObject);
+    procedure edtSearchServiceExecutorsChange(Sender: TObject);
+    procedure edtSearchCustomersChange(Sender: TObject);
+    procedure btnAddServiceExecutorsClick(Sender: TObject);
+    procedure dbedtExeChange(Sender: TObject);
+    procedure dbedt_Change(Sender: TObject);
+    procedure dbedt_1Change(Sender: TObject);
+    procedure edt1Change(Sender: TObject);
+    procedure btn7Click(Sender: TObject);
+    procedure btn12Click(Sender: TObject);
+    procedure btn11Click(Sender: TObject);
+    procedure btnAddHolydaysClick(Sender: TObject);
+    procedure btn13Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+  id_executors:string;
+  id_suppliers:string;
+  year:string;
+    { Public declarations }
+  end;
+
+var
+  FormMain: TFormMain;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitDataModule, UnitAddServiceExecutors, UnitAddServiceSuppliers,
+  UnitCreateHolyday;
+
+procedure TFormMain.btn10Click(Sender: TObject);
+var
+S,dir:String;
+begin
+Dir := ExtractFilePath(Application.ExeName);
+if Application.MessageBox(PChar('Сделать резервную копию БД?'),'Резервное копирование!',Mb_OkCancel)=id_OK then
+begin
+S:=dir+'backup\' + DateToStr(Date) + ' - '+ StringReplace(TimeToStr(Time), ':', '.', [rfReplaceAll, rfIgnoreCase]) + '.mdb';
+CopyFile(PChar(dlgOpen1.FileName),PChar(S),True);
+ShowMessage('Резервная копия успешно Создана!');
+end;
+
+end;
+
+procedure TFormMain.btn11Click(Sender: TObject);
+begin
+if dlgOpen1.Execute then
+lbl12.Caption:=dlgOpen1.FileName;
+end;
+
+procedure TFormMain.btn12Click(Sender: TObject);
+var S,dir:String;
+stringConnecting:AnsiString;
+begin
+Dir :=  ExtractFilePath(Application.ExeName);
+if Application.MessageBox(PChar('Востановить базу данных?'),'Восстановление БД!',Mb_OkCancel)=id_OK then
+begin
+DataModule1.con1.Connected:=False;
+Sleep(3000);
+S:=dir+'DataBase.mdb';
+CopyFile(PChar(dlgOpen1.FileName),PChar(S),True);
+ShowMessage('База данных успешно востановлена!');
+stringConnecting:='Provider=Microsoft.Jet.OLEDB.4.0;Password="";User ID=Admin;'+
+'Data Source='+GetCurrentDir+'\DateBase.mdb;Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";'+
+'Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;'+
+'Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;'+
+'Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;'+
+'Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don''t Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False' ;
+DataModule1.con1.ConnectionString:=stringConnecting;
+DataModule1.con1.Connected:=True;
+DataModule1.qryExecutors.Active:=True;
+DataModule1.qryServiceExecutors.Active:=True;
+DataModule1.qrySuppliers.Active:=True;
+DataModule1.qryServiceSuppliers.Active:=True;
+DataModule1.qryCustomers.Active:=True;
+DataModule1.qryHolydays.Active:=True;
+DataModule1.qryOrderExecutors.Active:=True;
+DataModule1.qryOrderSuppliers.Active:=True;
+end;
+end;
+
+procedure TFormMain.btn13Click(Sender: TObject);
+begin
+if Length(dbedt_1.Text)>0 then
+begin
+DataModule1.cmd1.CommandText:='Delete From Праздники Where Код_праздника='+dbedt_1.Text;
+DataModule1.cmd1.Execute;
+end;
+end;
+
+procedure TFormMain.btn1Click(Sender: TObject);
+begin
+pnlHolydays.Visible:=True;
+pnlSettings.Visible:=False;
+pnlExecutors.Visible:=False;
+pnlSuppliers.Visible:=False;
+pnlCustomers.Visible:=False;
+pnlHello.Visible:=False;
+end;
+
+procedure TFormMain.btn2Click(Sender: TObject);
+begin
+pnlHolydays.Visible:=False;
+pnlSettings.Visible:=True;
+pnlExecutors.Visible:=False;
+pnlSuppliers.Visible:=False;
+pnlCustomers.Visible:=False;
+pnlHello.Visible:=False;
+end;
+
+procedure TFormMain.btn3Click(Sender: TObject);
+begin
+pnlHolydays.Visible:=False;
+pnlSettings.Visible:=False;
+pnlExecutors.Visible:=True;
+pnlSuppliers.Visible:=False;
+pnlCustomers.Visible:=False;
+pnlHello.Visible:=False;
+end;
+
+procedure TFormMain.btn4Click(Sender: TObject);
+begin
+pnlHolydays.Visible:=False;
+pnlSettings.Visible:=False;
+pnlExecutors.Visible:=False;
+pnlSuppliers.Visible:=True;
+pnlCustomers.Visible:=False;
+pnlHello.Visible:=False;
+end;
+
+procedure TFormMain.btn5Click(Sender: TObject);
+begin
+pnlHolydays.Visible:=False;
+pnlSettings.Visible:=False;
+pnlExecutors.Visible:=False;
+pnlSuppliers.Visible:=False;
+pnlCustomers.Visible:=True;
+pnlHello.Visible:=False;
+end;
+
+procedure TFormMain.btn7Click(Sender: TObject);
+begin
+if(Length(dbedtExe.Text)=0) then
+ShowMessage('Сначала выберете Исполнителя')
+else
+begin
+id_suppliers:=dbedt_.Text;
+FormAddServiceSuppliers.ShowModal;
+end;
+end;
+
+procedure TFormMain.btn9Click(Sender: TObject);
+begin
+if dlgOpen1.Execute then
+Label1.Caption:=dlgOpen1.FileName;
+end;
+
+procedure TFormMain.btnAddHolydaysClick(Sender: TObject);
+begin
+FormCreateHolyday.Show;
+end;
+
+procedure TFormMain.btnAddServiceExecutorsClick(Sender: TObject);
+begin
+if(Length(dbedtExe.Text)=0) then
+ShowMessage('Сначала выберете Исполнителя')
+else
+begin
+id_executors:=dbedtExe.Text;
+FormAddServiceExecutors.ShowModal;
+end;
+end;
+
+procedure TFormMain.dbedtExeChange(Sender: TObject);
+begin
+if(Length(dbedtExe.Text)>0)then
+with DataModule1.qryServiceExecutors do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_исполнителей Where Код_исполнителя='+dbedtExe.Text);
+  Open;
+end;
+end;
+
+procedure TFormMain.dbedt_1Change(Sender: TObject);
+begin
+if(Length(dbedt_1.Text)>0)then
+begin
+ with DataModule1.qryOrderExecutors do
+ begin
+   SQL.Clear;
+   SQL.Add('Select у.Название as Название, у.Стоимость as Стоимость');
+   SQL.Add('From Услуги_поставщиков у, Заказы_поставщиков з, Праздники п');
+   SQL.Add('Where п.Код_Праздника=з.Код_праздника');
+   SQL.Add('AND з.Код_услуги=у.Код_услуги AND п.Код_праздника='+dbedt_1.Text);
+   Open;
+ end;
+with DataModule1.qryOrderSuppliers do
+begin
+     SQL.Clear;
+   SQL.Add('Select у.Название as Название, у.Стоимость as Стоимость');
+   SQL.Add('From Услуги_исполнителей у, Заказы_исполнителей з, Праздники п');
+   SQL.Add('Where п.Код_Праздника=з.Код_праздника');
+   SQL.Add('AND з.Код_услуги=у.Код_услуги AND п.Код_праздника='+dbedt_1.Text);
+   Open;
+end;
+end;
+end;
+
+procedure TFormMain.dbedt_Change(Sender: TObject);
+begin
+if(Length(dbedt_.Text)>0)then
+ with DataModule1.qryServiceSuppliers do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_поставщиков Where Код_поставщиков='+dbedt_.Text);
+  Open;
+end;
+end;
+
+procedure TFormMain.edt1Change(Sender: TObject);
+var command:AnsiString;
+begin
+ year:='';
+ DataModule1.cmd1.CommandText:='Drop Table tmp';
+DataModule1.cmd1.Execute;
+with DataModule1.qryHolydays do
+begin
+  SQL.Clear;
+  SQL.Add('Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик From Праздники п, Типы_праздников тп, Заказчики з');
+  SQL.Add('Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика');
+  SQL.Add('AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR ');
+  SQL.Add(' п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')');
+  Open;
+  end;
+  command:='Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик '+
+'Into tmp From Праздники п, Типы_праздников тп, Заказчики з '+
+'Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')';
+DataModule1.cmd1.CommandText:=command;
+DataModule1.cmd1.Execute;
+end;
+
+procedure TFormMain.edtSearchCustomersChange(Sender: TObject);
+begin
+    with DataModule1.qryCustomers do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Заказчики з');
+  SQL.Add('Where з.ФИО LIKE ''%'+edtSearchCustomers.Text+'%'' OR ');
+  SQL.Add('з.Организация LIKE ''%'+edtSearchCustomers.Text+'%'' OR ');
+   SQL.Add('з.Имейл LIKE ''%'+edtSearchCustomers.Text+'%'' OR ');
+  SQL.Add('з.Телефон LIKE ''%'+edtSearchCustomers.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormMain.edtSearchExecutorsChange(Sender: TObject);
+begin
+with DataModule1.qryExecutors do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Исполнители и');
+  SQL.Add('Where и.Название LIKE ''%'+edtSearchExecutors.Text+'%'' OR ');
+  SQL.Add('и.Имя_Контактного_лица LIKE ''%'+edtSearchExecutors.Text+'%'' OR ');
+   SQL.Add('и.Имейл LIKE ''%'+edtSearchExecutors.Text+'%'' OR ');
+  SQL.Add('Телефон LIKE ''%'+edtSearchExecutors.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormMain.edtSearchServiceExecutorsChange(Sender: TObject);
+begin
+with DataModule1.qryServiceExecutors do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_исполнителей уи');
+  SQL.Add('Where уи.Название LIKE ''%'+edtSearchServiceExecutors.Text+'%'' OR ');
+  SQL.Add('уи.Стоимость LIKE ''%'+edtSearchServiceExecutors.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormMain.edtSearchServiceSuppliersChange(Sender: TObject);
+begin
+with DataModule1.qryServiceSuppliers do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_поставщиков уп');
+  SQL.Add('Where уп.Название LIKE ''%'+edtSearchServiceSuppliers.Text+'%'' OR ');
+  SQL.Add('уп.Стоимость LIKE ''%'+edtSearchServiceSuppliers.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormMain.edtSearchSuppliersChange(Sender: TObject);
+begin
+with DataModule1.qrySuppliers do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Поставщики п');
+  SQL.Add('Where п.Название LIKE ''%'+edtSearchSuppliers.Text+'%'' OR ');
+  SQL.Add('п.Адрес LIKE ''%'+edtSearchSuppliers.Text+'%'' OR ');
+  SQL.Add('п.Телефон LIKE ''%'+edtSearchSuppliers.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormMain.FormCreate(Sender: TObject);
+var dir:string;
+command:AnsiString;
+begin
+ year:='';
+ DataModule1.cmd1.CommandText:='Drop Table tmp';
+DataModule1.cmd1.Execute;
+with DataModule1.qryHolydays do
+begin
+  SQL.Clear;
+  SQL.Add('Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик From Праздники п, Типы_праздников тп, Заказчики з');
+  SQL.Add('Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика');
+  SQL.Add('AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR ');
+  SQL.Add(' п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')');
+  Open;
+  end;
+  command:='Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик '+
+'Into tmp From Праздники п, Типы_праздников тп, Заказчики з '+
+'Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')';
+DataModule1.cmd1.CommandText:=command;
+DataModule1.cmd1.Execute;
+
+Dir := ExtractFilePath(Application.ExeName);
+Label4.Caption:=dir;
+label6.Caption:=dir+'backup\';
+Lbl10.Caption:=dir;
+lbl11.Caption:=dir+'backup\';
+dlgOpen1.InitialDir:=dir+'backup\';
+
+end;
+
+end.

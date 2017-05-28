@@ -1,0 +1,71 @@
+unit UnitCreateHolyday;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFormCreateHolyday = class(TForm)
+    scrlbx1: TScrollBox;
+    grp1: TGroupBox;
+    btnAddZ: TSpeedButton;
+    edtZFio: TEdit;
+    edtZOrg: TEdit;
+    edtZTel: TEdit;
+    edtZEmail: TEdit;
+    grp2: TGroupBox;
+    img2: TImage;
+    btn1: TSpeedButton;
+    dbgrd4: TDBGrid;
+    edt2: TEdit;
+    dbgrd5: TDBGrid;
+    dbgrd6: TDBGrid;
+    dbnvgr2: TDBNavigator;
+    grp3: TGroupBox;
+    img1: TImage;
+    btnAddServiceExecutor: TSpeedButton;
+    dbgrd1: TDBGrid;
+    edt1: TEdit;
+    dbgrd2: TDBGrid;
+    dbgrd3: TDBGrid;
+    grp4: TGroupBox;
+    btnAddHolyday: TSpeedButton;
+    edtHcodeZ: TEdit;
+    edtHcodeTH: TEdit;
+    edtHname: TEdit;
+    edtHplace: TEdit;
+    dtpHdate: TDateTimePicker;
+    edtHcost: TEdit;
+    chkHcosted: TCheckBox;
+    dbnvgr1: TDBNavigator;
+    procedure btnAddZClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    id_holyday:string;
+  end;
+
+var
+  FormCreateHolyday: TFormCreateHolyday;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitDataModule, UnitMain;
+
+procedure TFormCreateHolyday.btnAddZClick(Sender: TObject);
+begin
+DataModule1.cmd1.CommandText:='Insert Into Заказчики(ФИО,Организация,Телефон,Имейл,Дата_регистрации) Values('''+edtZFio.Text+''','''+edtZOrg.Text+''','''+edtZTel.Text+''','''+edtZEmail.Text+''','+FormatFloat('#', Date)+')';
+DataModule1.cmd1.Execute;
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select Max(код_заказчика) as last12 From Заказчики');
+DataModule1.qrySQL.Open;
+edtHcodeZ.Text:=DataModule1.qrySQL.FieldByName('last12').AsString;
+
+end;
+
+end.

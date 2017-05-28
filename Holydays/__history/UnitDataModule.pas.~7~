@@ -1,0 +1,48 @@
+unit UnitDataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDataModule1 = class(TDataModule)
+    con1: TADOConnection;
+    dsExecutors: TDataSource;
+    qryExecutors: TADOQuery;
+    dsServiceExecutors: TDataSource;
+    qryServiceExecutors: TADOQuery;
+    dsSuppliers: TDataSource;
+    qrySuppliers: TADOQuery;
+    dsServiceSuppliers: TDataSource;
+    qryServiceSuppliers: TADOQuery;
+    dsCustomers: TDataSource;
+    qryCustomers: TADOQuery;
+    dsHolydays: TDataSource;
+    qryHolydays: TADOQuery;
+    dsOrderExecutors: TDataSource;
+    qryOrderExecutors: TADOQuery;
+    dsOrderSuppliers: TDataSource;
+    qryOrderSuppliers: TADOQuery;
+    qrySQL: TADOQuery;
+    qryServiceExecutorsКод_услуги: TAutoIncField;
+    qryServiceExecutorsКод_исполнителя: TIntegerField;
+    qryServiceExecutorsНазвание: TWideStringField;
+    qryServiceExecutorsСтоимость: TIntegerField;
+    cmd1: TADOCommand;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -1,12 +1,8 @@
 ﻿object DataModule1: TDataModule1
   OldCreateOrder = False
-  Height = 379
-  Width = 657
+  Height = 540
+  Width = 718
   object con1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Password="";Data Source=DateBas' +
-      'e.mdb;Persist Security Info=True'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -19,7 +15,6 @@
     Top = 64
   end
   object qryExecutors: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -34,7 +29,6 @@
     Top = 120
   end
   object qryServiceExecutors: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -63,7 +57,6 @@
     Top = 176
   end
   object qrySuppliers: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -78,7 +71,6 @@
     Top = 240
   end
   object qryServiceSuppliers: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -93,7 +85,6 @@
     Top = 304
   end
   object qryCustomers: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -108,7 +99,6 @@
     Top = 64
   end
   object qryHolydays: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -126,7 +116,6 @@
     Top = 128
   end
   object qryOrderExecutors: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -145,7 +134,6 @@
     Top = 192
   end
   object qryOrderSuppliers: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -169,5 +157,133 @@
     Parameters = <>
     Left = 152
     Top = 16
+  end
+  object dsAddExe: TDataSource
+    DataSet = qryAddExe
+    Left = 544
+    Top = 40
+  end
+  object qryAddExe: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1080)
+    Left = 656
+    Top = 40
+  end
+  object dsAddSerExe: TDataSource
+    DataSet = qryAddSerExe
+    Left = 544
+    Top = 96
+  end
+  object qryAddSerExe: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1059#1089#1083#1091#1075#1080'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081)
+    Left = 656
+    Top = 96
+    object atncfld1: TAutoIncField
+      FieldName = #1050#1086#1076'_'#1091#1089#1083#1091#1075#1080
+      ReadOnly = True
+    end
+    object intgrfld1: TIntegerField
+      FieldName = #1050#1086#1076'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1103
+    end
+    object wdstrngfld1: TWideStringField
+      FieldName = #1053#1072#1079#1074#1072#1085#1080#1077
+      Size = 255
+    end
+    object intgrfld2: TIntegerField
+      FieldName = #1057#1090#1086#1080#1084#1086#1089#1090#1100
+    end
+  end
+  object dsAddSup: TDataSource
+    DataSet = qryAddSup
+    Left = 544
+    Top = 152
+  end
+  object qryAddSup: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1055#1086#1089#1090#1072#1074#1097#1080#1082#1080)
+    Left = 656
+    Top = 160
+  end
+  object dsAddSerSup: TDataSource
+    DataSet = qryAddSerSup
+    Left = 544
+    Top = 216
+  end
+  object qryAddSerSup: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select * from '#1059#1089#1083#1091#1075#1080'_'#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074)
+    Left = 656
+    Top = 216
+  end
+  object dsAddOrdExe: TDataSource
+    DataSet = qryAddOrdExe
+    Left = 544
+    Top = 288
+  end
+  object qryAddOrdExe: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      
+        'Select '#1079'.'#1050#1086#1076'_'#1079#1072#1082#1072#1079#1072','#1080'.'#1048#1084#1103'_'#1082#1086#1085#1090#1072#1082#1090#1085#1086#1075#1086'_'#1083#1080#1094#1072','#1091'.'#1053#1072#1079#1074#1072#1085#1080#1077','#1091'.'#1057#1090#1086#1080#1084#1086#1089#1090 +
+        #1100
+      
+        '  from '#1047#1072#1082#1072#1079#1099'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081' '#1079', '#1055#1088#1072#1079#1076#1085#1080#1082#1080' '#1087', '#1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1080' '#1080', '#1059#1089#1083#1091#1075#1080 +
+        '_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1077#1081' '#1091
+      
+        'Where '#1079'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072'='#1087'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072' AND  '#1079'.'#1050#1086#1076'_'#1091#1089#1083#1091#1075#1080'='#1091'.'#1050#1086#1076'_'#1091#1089 +
+        #1083#1091#1075#1080
+      'AND '#1080'.'#1050#1086#1076'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1103'='#1091'.'#1050#1086#1076'_'#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1103' AND '#1087'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072'=1')
+    Left = 656
+    Top = 296
+  end
+  object dsAddOrdSup: TDataSource
+    DataSet = qryAddOrdSup
+    Left = 544
+    Top = 352
+  end
+  object qryAddOrdSup: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'Select '#1079'.'#1050#1086#1076'_'#1079#1072#1082#1072#1079#1072','#1087#1086'.'#1053#1072#1079#1074#1072#1085#1080#1077','#1091'.'#1053#1072#1079#1074#1072#1085#1080#1077','#1091'.'#1057#1090#1086#1080#1084#1086#1089#1090#1100
+      
+        '  from '#1047#1072#1082#1072#1079#1099'_'#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074' '#1079', '#1055#1088#1072#1079#1076#1085#1080#1082#1080' '#1087', '#1055#1086#1089#1090#1072#1074#1097#1080#1082#1080' '#1087#1086', '#1059#1089#1083#1091#1075#1080'_' +
+        #1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074' '#1091
+      
+        'Where '#1079'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072'='#1087'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072' AND  '#1079'.'#1050#1086#1076'_'#1091#1089#1083#1091#1075#1080'='#1091'.'#1050#1086#1076'_'#1091#1089 +
+        #1083#1091#1075#1080
+      'AND '#1087#1086'.'#1050#1086#1076'_'#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072'='#1091'.'#1050#1086#1076'_'#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074' AND '#1087'.'#1050#1086#1076'_'#1087#1088#1072#1079#1076#1085#1080#1082#1072'=1')
+    Left = 656
+    Top = 352
+  end
+  object qrySUM: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT  SUM('#1057#1090#1086#1080#1084#1086#1089#1090#1100') AS '#1057#1091#1084#1072' From tmp')
+    Left = 296
+    Top = 408
+  end
+  object dsSUM: TDataSource
+    DataSet = qrySUM
+    Left = 376
+    Top = 416
   end
 end

@@ -35,6 +35,7 @@ procedure TFormStart.Timer1Timer(Sender: TObject);
 var g:Pointer;
 stringConnecting:AnsiString;
 begin
+Timer1.Enabled:=false;
 DataModule1.con1.Connected:=False;
 stringConnecting:='Provider=Microsoft.Jet.OLEDB.4.0;Password="";User ID=Admin;'+
 'Data Source='+GetCurrentDir+'\DateBase.mdb;Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";'+
@@ -59,7 +60,7 @@ g:=@Application.MainForm;
 Pointer(G^):=FormMain;
 FormMain.show;
 FormStart.Close;
-Timer1.Enabled:=false;
+
 end;
 
 end.

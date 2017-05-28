@@ -1,0 +1,169 @@
+unit UnitCreateHolyday;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Mask;
+
+type
+  TFormCreateHolyday = class(TForm)
+    scrlbx1: TScrollBox;
+    grp1: TGroupBox;
+    btnAddZ: TSpeedButton;
+    edtZFio: TEdit;
+    edtZOrg: TEdit;
+    edtZTel: TEdit;
+    edtZEmail: TEdit;
+    grp2: TGroupBox;
+    img2: TImage;
+    btn1: TSpeedButton;
+    dbgrd4: TDBGrid;
+    edt2: TEdit;
+    dbgrd5: TDBGrid;
+    dbgrd6: TDBGrid;
+    dbnvgr2: TDBNavigator;
+    grp3: TGroupBox;
+    img1: TImage;
+    btnAddServiceExecutor: TSpeedButton;
+    dbgrd1: TDBGrid;
+    edt1: TEdit;
+    dbgrd2: TDBGrid;
+    dbgrd3: TDBGrid;
+    grp4: TGroupBox;
+    btnAddHolyday: TSpeedButton;
+    edtHcodeZ: TEdit;
+    edtHcodeTH: TEdit;
+    edtHname: TEdit;
+    edtHplace: TEdit;
+    dtpHdate: TDateTimePicker;
+    edtHcost: TEdit;
+    chkHcosted: TCheckBox;
+    dbnvgr1: TDBNavigator;
+    dbedt_: TDBEdit;
+    dbedt_1: TDBEdit;
+    lbl1: TLabel;
+    lbl2: TLabel;
+    procedure btnAddZClick(Sender: TObject);
+    procedure dbedt_Change(Sender: TObject);
+    procedure dbedt_1Change(Sender: TObject);
+    procedure edt1Change(Sender: TObject);
+    procedure edt2Change(Sender: TObject);
+    procedure btnAddHolydayClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    id_holyday:string;
+    costSerExe,costSerSup:string;
+  end;
+
+var
+  FormCreateHolyday: TFormCreateHolyday;
+
+implementation
+
+{$R *.dfm}
+
+uses UnitDataModule, UnitMain;
+
+procedure TFormCreateHolyday.btnAddHolydayClick(Sender: TObject);
+begin
+if(Length(btnAddHolyday.Caption)=1) then
+begin
+DataModule1.cmd1.CommandText:='Insert Into праздники(Код_заказчика,Код_типа_заказа, Название,Место_проведения,Дата_проведения) Values('+edtHcodeZ.Text+','+edtHcodeTH+','''+edtHname.Text+''','''+edtHplace.Text+''',#'+DateToStr(dtpHdate.Date)+'#)';
+DataModule1.cmd1.Execute;
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select Max(код_праздника) as lastH From Заказчики');
+DataModule1.qrySQL.Open;
+id_holyday:=DataModule1.qrySQL.FieldByName('lastH').AsString;
+FormCreateHolyday.Caption:='Создание праздника №'+id_holyday;
+btnAddHolyday.Caption:='ок';
+edtHcost.Enabled:=True;
+chkHcosted.Enabled:=True;
+grp2.Enabled:=True;
+grp3.Enabled:=True;
+ShowMessage('Праздник зарегестрирован! Подсчитайте стоимость услуг!');
+end
+else
+begin
+DataModule1.cmd1.CommandText:='Update Праздники set Стоимость='+StrToInt(InttoStr(costSerExe)+InttoStr(costSerExe))+', Оплачен='+chkHcosted.Checked+' Where код_праздника='+id_holyday+'';
+DataModule1.cmd1.Execute;
+FormCreateHolyday.Caption:='Создание праздника';
+id_holyday:='';
+btnAddHolyday.Caption:='+';
+edtHcost.Enabled:=False;
+chkHcosted.Enabled:=False;
+grp2.Enabled:=False;
+grp3.Enabled:=False;
+costSerExe:='';
+costSerSup:='';
+end;
+end;
+
+procedure TFormCreateHolyday.btnAddZClick(Sender: TObject);
+begin
+DataModule1.cmd1.CommandText:='Insert Into Заказчики(ФИО,Организация,Телефон,Имейл,Дата_регистрации) Values('''+edtZFio.Text+''','''+edtZOrg.Text+''','''+edtZTel.Text+''','''+edtZEmail.Text+''','+FormatFloat('#', Date)+')';
+DataModule1.cmd1.Execute;
+DataModule1.qrySQL.SQL.Clear;
+DataModule1.qrySQL.SQL.Add('Select Max(код_заказчика) as last12 From Заказчики');
+DataModule1.qrySQL.Open;
+edtHcodeZ.Text:=DataModule1.qrySQL.FieldByName('last12').AsString;
+
+end;
+
+procedure TFormCreateHolyday.dbedt_1Change(Sender: TObject);
+begin
+if(Length(dbedt_1.Text)>0)then
+with DataModule1.qryAddExe do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Поставщики Where Код_поставщика='+dbedt_1.Text);
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.dbedt_Change(Sender: TObject);
+begin
+if(Length(dbedt_.Text)>0)then
+with DataModule1.qryAddExe do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Исполнители Where Код_исполнителя='+dbedt_.Text);
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.edt1Change(Sender: TObject);
+begin
+with DataModule1.qryAddSerExe do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_исполнителей уи');
+  SQL.Add('Where уи.Название LIKE ''%'+edt1.Text+'%'' OR ');
+  SQL.Add('уи.Стоимость LIKE ''%'+edt1.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.edt2Change(Sender: TObject);
+begin
+with DataModule1.qryAddSerSup do
+begin
+  SQL.Clear;
+  SQL.Add('Select * From Услуги_поставщиков уп');
+  SQL.Add('Where уп.Название LIKE ''%'+edt2.Text+'%'' OR ');
+  SQL.Add('уп.Стоимость LIKE ''%'+edt2.Text+'%''');
+  Open;
+end;
+end;
+
+procedure TFormCreateHolyday.FormCreate(Sender: TObject);
+begin
+costSerExe:='';
+costSerSup:='';
+end;
+
+end.

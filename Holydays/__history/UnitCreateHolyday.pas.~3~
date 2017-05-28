@@ -1,0 +1,57 @@
+unit UnitCreateHolyday;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFormCreateHolyday = class(TForm)
+    scrlbx1: TScrollBox;
+    grp1: TGroupBox;
+    btnAddZ: TSpeedButton;
+    edtZFio: TEdit;
+    edtZOrg: TEdit;
+    edtZTel: TEdit;
+    edtZEmail: TEdit;
+    grp2: TGroupBox;
+    img2: TImage;
+    btn1: TSpeedButton;
+    dbgrd4: TDBGrid;
+    edt2: TEdit;
+    dbgrd5: TDBGrid;
+    dbgrd6: TDBGrid;
+    dbnvgr2: TDBNavigator;
+    grp3: TGroupBox;
+    img1: TImage;
+    btnAddServiceExecutor: TSpeedButton;
+    dbgrd1: TDBGrid;
+    edt1: TEdit;
+    dbgrd2: TDBGrid;
+    dbgrd3: TDBGrid;
+    grp4: TGroupBox;
+    btnAddHolyday: TSpeedButton;
+    edtHcodeZ: TEdit;
+    edtHcodeTH: TEdit;
+    edtHname: TEdit;
+    edtHplace: TEdit;
+    dtpHdate: TDateTimePicker;
+    edtHcost: TEdit;
+    chkHcosted: TCheckBox;
+    dbnvgr1: TDBNavigator;
+  private
+    { Private declarations }
+  public
+    id_holyday:string;
+  end;
+
+var
+  FormCreateHolyday: TFormCreateHolyday;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -52,9 +52,7 @@ type
     dbgrd3: TDBGrid;
     edtSearchSuppliers: TEdit;
     edtSearchExecutors: TEdit;
-    dbgrd8: TDBGrid;
     dbgrd6: TDBGrid;
-    dbgrd7: TDBGrid;
     lbl1: TLabel;
     grp8: TGroupBox;
     lbl2: TLabel;
@@ -78,10 +76,31 @@ type
     img10: TImage;
     img11: TImage;
     dbedtExe: TDBEdit;
-    dbedt_: TDBEdit;
     edt1: TEdit;
     img12: TImage;
+    lbl7: TLabel;
+    grp10: TGroupBox;
+    lbl8: TLabel;
+    btn11: TSpeedButton;
+    lbl9: TLabel;
+    btn12: TSpeedButton;
+    lbl10: TLabel;
+    lbl11: TLabel;
+    lbl12: TLabel;
+    lbl13: TLabel;
+    lbl14: TLabel;
+    btnAddHolydays: TSpeedButton;
+    dbedt_: TDBEdit;
     dbedt_1: TDBEdit;
+    dbnvgr6: TDBNavigator;
+    btn13: TSpeedButton;
+    btnSortYear: TSpeedButton;
+    cbb1: TComboBox;
+    btnPrint: TSpeedButton;
+    grp11: TGroupBox;
+    dbgrd8: TDBGrid;
+    grp12: TGroupBox;
+    dbgrd7: TDBGrid;
     procedure btn1Click(Sender: TObject);
     procedure btn5Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
@@ -101,11 +120,18 @@ type
     procedure dbedt_1Change(Sender: TObject);
     procedure edt1Change(Sender: TObject);
     procedure btn7Click(Sender: TObject);
+    procedure btn12Click(Sender: TObject);
+    procedure btn11Click(Sender: TObject);
+    procedure btnAddHolydaysClick(Sender: TObject);
+    procedure btn13Click(Sender: TObject);
+    procedure btnSortYearClick(Sender: TObject);
+    procedure btnPrintClick(Sender: TObject);
   private
     { Private declarations }
   public
   id_executors:string;
   id_suppliers:string;
+  year1:string;
     { Public declarations }
   end;
 
@@ -116,7 +142,8 @@ implementation
 
 {$R *.dfm}
 
-uses UnitDataModule, UnitAddServiceExecutors, UnitAddServiceSuppliers;
+uses UnitDataModule, UnitAddServiceExecutors, UnitAddServiceSuppliers,
+  UnitCreateHolyday, UnitSortYear, UnitPreview;
 
 procedure TFormMain.btn10Click(Sender: TObject);
 var
@@ -130,6 +157,54 @@ CopyFile(PChar(dlgOpen1.FileName),PChar(S),True);
 ShowMessage('Резервная копия успешно Создана!');
 end;
 
+end;
+
+procedure TFormMain.btn11Click(Sender: TObject);
+begin
+if dlgOpen1.Execute then
+lbl12.Caption:=dlgOpen1.FileName;
+end;
+
+procedure TFormMain.btn12Click(Sender: TObject);
+var S,dir:String;
+stringConnecting:AnsiString;
+begin
+Dir :=  ExtractFilePath(Application.ExeName);
+if Application.MessageBox(PChar('Востановить базу данных?'),'Восстановление БД!',Mb_OkCancel)=id_OK then
+begin
+DataModule1.con1.Connected:=False;
+Sleep(3000);
+S:=dir+'DataBase.mdb';
+CopyFile(PChar(dlgOpen1.FileName),PChar(S),True);
+ShowMessage('База данных успешно востановлена!');
+stringConnecting:='Provider=Microsoft.Jet.OLEDB.4.0;Password="";User ID=Admin;'+
+'Data Source='+GetCurrentDir+'\DateBase.mdb;Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";'+
+'Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;'+
+'Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;'+
+'Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;'+
+'Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don''t Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False' ;
+DataModule1.con1.ConnectionString:=stringConnecting;
+DataModule1.con1.Connected:=True;
+DataModule1.qryExecutors.Active:=True;
+DataModule1.qryServiceExecutors.Active:=True;
+DataModule1.qrySuppliers.Active:=True;
+DataModule1.qryServiceSuppliers.Active:=True;
+DataModule1.qryCustomers.Active:=True;
+DataModule1.qryHolydays.Active:=True;
+DataModule1.qryOrderExecutors.Active:=True;
+DataModule1.qryOrderSuppliers.Active:=True;
+end;
+end;
+
+procedure TFormMain.btn13Click(Sender: TObject);
+begin
+if Length(dbedt_1.Text)>0 then
+begin
+DataModule1.cmd1.CommandText:='Delete From Праздники Where Код_праздника='+dbedt_1.Text;
+DataModule1.cmd1.Execute;
+DataModule1.qryHolydays.Active:=False;
+DataModule1.qryHolydays.Active:=True;
+end;
 end;
 
 procedure TFormMain.btn1Click(Sender: TObject);
@@ -199,6 +274,11 @@ if dlgOpen1.Execute then
 Label1.Caption:=dlgOpen1.FileName;
 end;
 
+procedure TFormMain.btnAddHolydaysClick(Sender: TObject);
+begin
+FormCreateHolyday.Show;
+end;
+
 procedure TFormMain.btnAddServiceExecutorsClick(Sender: TObject);
 begin
 if(Length(dbedtExe.Text)=0) then
@@ -208,6 +288,76 @@ begin
 id_executors:=dbedtExe.Text;
 FormAddServiceExecutors.ShowModal;
 end;
+end;
+
+procedure TFormMain.btnPrintClick(Sender: TObject);
+var spec:string;
+isspec:Boolean;
+begin
+if cbb1.Text='По году' then
+begin
+   isspec:=False;
+      with DataModule1.qryHolydays do
+      begin
+        Last;
+        spec:=FieldByName('Дата_провидения').AsString;
+        First;
+   while not Eof do
+   begin
+     if Copy(DataModule1.qryHolydays.Fieldbyname('Дата_провидения').AsString,Length(DataModule1.qryHolydays.Fieldbyname('Дата_провидения').AsString)-4,4)=Copy(spec,Length(spec)-4,4) then
+     isspec:=True
+     else Break;
+    Next;
+   end;
+   end;
+   if isspec=True then
+   begin
+        with DataModule1.qrySQL do
+        begin
+        SQL.Clear;
+        SQL.Add('SELECT  SUM(Стоимость) AS Сума From tmp');
+        Open;
+        end;
+        FormPreview.frxrprt1.ShowReport();
+        FormPreview.frxrprt1.Export(FormPreview.frxpdfxprt1);
+   end
+ else ShowMessage('Выберите только один год');
+ end;
+ if cbb1.Text='По типу праздника' then
+ begin
+isspec:=False;
+      with DataModule1.qryHolydays do
+      begin
+        Last;
+        spec:=FieldByName('Тип_праздника').AsString;
+        First;
+   while not Eof do
+   begin
+     if Copy(DataModule1.qryHolydays.Fieldbyname('Тип_праздника').AsString,1,4)=Copy(spec,1,4) then
+     isspec:=True
+     else Break;
+    Next;
+   end;
+   end;
+   if isspec=True then
+   begin
+        with DataModule1.qrySQL do
+        begin
+        SQL.Clear;
+        SQL.Add('SELECT  SUM(Стоимость) AS Сума From tmp');
+        Open;
+        end;
+        FormPreview.frxrprt2.ShowReport();
+        FormPreview.frxrprt2.Export(FormPreview.frxpdfxprt2);
+   end
+ else ShowMessage('Выберите только тип праздника');
+ end;
+
+end;
+
+procedure TFormMain.btnSortYearClick(Sender: TObject);
+begin
+FormSortYear.ShowModal;
 end;
 
 procedure TFormMain.dbedtExeChange(Sender: TObject);
@@ -258,7 +408,11 @@ end;
 end;
 
 procedure TFormMain.edt1Change(Sender: TObject);
+var command:AnsiString;
 begin
+ year1:='';
+ DataModule1.cmd1.CommandText:='Drop Table tmp';
+DataModule1.cmd1.Execute;
 with DataModule1.qryHolydays do
 begin
   SQL.Clear;
@@ -268,6 +422,11 @@ begin
   SQL.Add(' п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')');
   Open;
   end;
+  command:='Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик '+
+'Into tmp From Праздники п, Типы_праздников тп, Заказчики з '+
+'Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')';
+DataModule1.cmd1.CommandText:=command;
+DataModule1.cmd1.Execute;
 end;
 
 procedure TFormMain.edtSearchCustomersChange(Sender: TObject);
@@ -337,11 +496,32 @@ end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var dir:string;
+command:AnsiString;
 begin
+ {year1:='';
+ DataModule1.cmd1.CommandText:='Drop Table tmp';
+DataModule1.cmd1.Execute;
+with DataModule1.qryHolydays do
+begin
+  SQL.Clear;
+  SQL.Add('Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик From Праздники п, Типы_праздников тп, Заказчики з');
+  SQL.Add('Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика');
+  SQL.Add('AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR ');
+  SQL.Add(' п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')');
+  Open;
+  end;
+  command:='Select п.Код_праздника,п.Код_типа_праздника, п.Код_заказчика, п.Название, п.Место_проведения,п.Дата_провидения,п.Стоимость, п.Оплачен, тп.Название as Тип_праздника, з.ФИО as Заказчик '+
+'Into tmp From Праздники п, Типы_праздников тп, Заказчики з '+
+'Where п.Код_Типа_праздника=тп.Код_типа_праздника AND п.Код_заказчика=з.Код_заказчика AND (тп.Название LIKE ''%'+edt1.Text+'%'' OR з.ФИО LIKE ''%'+edt1.Text+'%'' OR п.Название LIKE ''%'+edt1.Text+'%'' OR  п.Место_проведения LIKE ''%'+edt1.Text+'%'' OR п.Стоимость LIKE ''%'+edt1.Text+'%'')';
+DataModule1.cmd1.CommandText:=command;
+DataModule1.cmd1.Execute;     }
+
 Dir := ExtractFilePath(Application.ExeName);
 Label4.Caption:=dir;
 label6.Caption:=dir+'backup\';
-dlgOpen1.InitialDir:=dir;
+Lbl10.Caption:=dir;
+lbl11.Caption:=dir+'backup\';
+dlgOpen1.InitialDir:=dir+'backup\';
 
 end;
 

@@ -30,6 +30,24 @@ type
     qryServiceExecutorsÕ‡Á‚‡ÌËÂ: TWideStringField;
     qryServiceExecutors—ÚÓËÏÓÒÚ¸: TIntegerField;
     cmd1: TADOCommand;
+    dsAddExe: TDataSource;
+    qryAddExe: TADOQuery;
+    dsAddSerExe: TDataSource;
+    qryAddSerExe: TADOQuery;
+    atncfld1: TAutoIncField;
+    intgrfld1: TIntegerField;
+    wdstrngfld1: TWideStringField;
+    intgrfld2: TIntegerField;
+    dsAddSup: TDataSource;
+    qryAddSup: TADOQuery;
+    dsAddSerSup: TDataSource;
+    qryAddSerSup: TADOQuery;
+    dsAddOrdExe: TDataSource;
+    qryAddOrdExe: TADOQuery;
+    dsAddOrdSup: TDataSource;
+    qryAddOrdSup: TADOQuery;
+    qrySUM: TADOQuery;
+    dsSUM: TDataSource;
   private
     { Private declarations }
   public
